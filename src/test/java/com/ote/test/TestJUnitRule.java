@@ -7,8 +7,11 @@ import org.junit.rules.RuleChain;
 import org.junit.rules.TestName;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.junit.runners.model.Statement;
 
+@RunWith(JUnit4.class)
 public class TestJUnitRule {
 
     @Rule
@@ -18,14 +21,14 @@ public class TestJUnitRule {
     public TestName testNameRule = new TestName();
 
     private void testParameter(@NonNull String test){
-        System.out.println(test);
+    //    System.out.println(test);
     }
 
     @Test
     public void test() {
         System.out.println("INNER TEST : " + testNameRule.getMethodName());
 
-        testParameter(null);
+        //testParameter(null);
     }
 
     public class LoggingRule implements TestRule {
@@ -43,7 +46,7 @@ public class TestJUnitRule {
 
                 @Override
                 public void evaluate() throws Throwable {
-                    System.out.println(message);
+                    System.out.println("LoggingRule : " + message);
                     statement.evaluate();
                 }
             };
